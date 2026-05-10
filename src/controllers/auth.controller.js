@@ -1,5 +1,6 @@
 import { registerService } from "../services/register.service.js";
 import { resendVerificationService } from "../services/resend.service.js";
+import { verificationService } from "../services/verification.service.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
 //REGISTER CONTROLLER ***************
@@ -20,5 +21,14 @@ export const resendVerificationController = catchAsync(async(req, res)=>{
     res.json({
         success: true,
         message: "Check Your Email to Verify",
+    });
+});
+//EMAIL VERIFICATION CONTROLLER **************
+export const verificationController = catchAsync(async (req, res) => {
+    const { token } = req.params;
+    await verificationService(token);
+    res.status(200).json({
+        success: true,
+        message: "Email Verified Successfully!"
     });
 });
