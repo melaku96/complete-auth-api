@@ -23,7 +23,7 @@ export const resendVerificationService = async(email)=>{
     user.verificationTokenExpire = Date.now()+60*60*1000;
     await user.save();
 
-    const verificationURL = `http://localhost:3000/api/auth/verify-email${verificationToken}`;
+    const verificationURL = `http://localhost:3000/api/auth/verify-email?token=${verificationToken}`;
 
     const htmlTemplate = verifyEmailTemplate(verificationURL);
 

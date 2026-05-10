@@ -25,7 +25,7 @@ export const resendVerificationController = catchAsync(async(req, res)=>{
 });
 //EMAIL VERIFICATION CONTROLLER **************
 export const verificationController = catchAsync(async (req, res) => {
-    const { token } = req.params;
+    const { token } = req.query;
     await verificationService(token);
     res.status(200).json({
         success: true,

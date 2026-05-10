@@ -41,7 +41,7 @@ export const registerService = async (name, email, password) => {
     verificationTokenExpire: Date.now() + 60 * 60 * 1000,
   });
 
-  const verificationLink = `http://localhost:3000/api/auth/verify-email/${verificationToken}`;
+  const verificationLink = `http://localhost:3000/api/auth/verify-email?token=${verificationToken}`;
 
   const htmlTemplet = verifyEmailTemplate(verificationLink);
   await sendEmail(email, "Verify Your Email", htmlTemplet);
