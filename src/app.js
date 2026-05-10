@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import { globalErrorHandler } from "./middlewares/globalErrorHandler.js";
 
 const app = express();
 
@@ -16,5 +17,12 @@ app.use(cookieParser());
 //Routes
 
 //404 handling
+app.use((req, res)=>{
+  res.status(404).json({
+    message: "Route not found"
+  });
+});
+//Global error handling
+app.use(globalErrorHandler);
 
 export default app;
