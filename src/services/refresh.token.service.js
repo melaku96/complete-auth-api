@@ -6,7 +6,7 @@ import crypto from "crypto";
 
 export const refreshTokenService = async(token)=>{
   if(!token){
-    throw new ApiError("Token not found", 4013);
+    throw new ApiError("Token not found", 403);
   }
   const hashedToken = cryptoHash(token);
   const user = await userModel.findOne({refreshToken: hashedToken});
