@@ -1,3 +1,4 @@
+import { forgotPasswordService } from "../services/forgot.password.service.js";
 import { loginService } from "../services/login.service.js";
 import { registerService } from "../services/register.service.js";
 import { resendVerificationService } from "../services/resend.verification.service.js";
@@ -55,5 +56,16 @@ export const loginController = catchAsync(async (req, res) => {
         success: true,
         message: 'Login Successfully!',
         user
+    });
+});
+//FORGOT CONTROLLER***********
+export const forgotPasswordController = catchAsync(async(req, res)=>{
+    const {email} = req.body;
+    const {resetURL} = await forgotPasswordService(email);
+
+    res.status(200).json({
+        success:true,
+        message:'Reset URL just sent for you',
+        resetURL
     });
 });
