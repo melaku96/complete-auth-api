@@ -15,6 +15,6 @@ router.post("/forgot-password", forgotPasswordController);
 router.patch("/reset-password/:token", resetPasswordController);
 router.post("/refresh-token", refreshTokenController);
 router.post("/logout", logoutController);
-router.post("/upload-profile", authMiddleware, upload('profile'), profileUploadController);
+router.post("/upload-profile", authMiddleware, upload.single('profile'), profileUploadController);
 
 export default router;
