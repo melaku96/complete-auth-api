@@ -1,6 +1,7 @@
 import userModel from "../models/user.model.js";
 import ApiError from "../utils/ApiError.js";
 import { catchAsync } from "../utils/catchAsync.js";
+import jwt from "jsonwebtoken"
 
 export const authMiddleware = catchAsync(async(req, res, next)=>{
   const token = req.cookies.accessToken;
