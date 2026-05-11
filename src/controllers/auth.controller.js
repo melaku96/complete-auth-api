@@ -1,5 +1,6 @@
 import { forgotPasswordService } from "../services/forgot.password.service.js";
 import { loginService } from "../services/login.service.js";
+import { logoutService } from "../services/logout.service.js";
 import { registerService } from "../services/register.service.js";
 import { resendVerificationService } from "../services/resend.verification.service.js";
 import { resetPasswordService } from "../services/reset.password.service.js";
@@ -80,5 +81,27 @@ export const resetPasswordController = catchAsync(async(req,res)=>{
     res.status(200).json({
         success: true,
         message: "Your password is reseted successfully",
+    });
+})
+//LOGOUT CONTROLLER
+export const logoutController = catchAsync(async(req, res)=>{
+    const token = req.cookies.refreshToken;
+    await logoutService(token);
+      res.clearCookie('accessToken',{
+        httpOnly: true, 
+        secure: false,
+        sameSite: 'strict', 
+        maxAge: 30 * 60 * 1000,
+    });
+    res.clearCookie('refreshToken',{
+        httpOnly: true, 
+        secure: false,
+        sameSite: 'strict', 
+        maxAge: 7*24*60*60*1000,
+    });
+
+    res.status(200).json({
+        success: true,
+        message: 'Logged out successfully!',
     });
 })
