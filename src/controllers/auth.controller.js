@@ -1,6 +1,6 @@
 import { loginService } from "../services/login.service.js";
 import { registerService } from "../services/register.service.js";
-import { resendVerificationService } from "../services/resend.service.js";
+import { resendVerificationService } from "../services/resend.verification.service.js";
 import { verificationService } from "../services/verification.service.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
