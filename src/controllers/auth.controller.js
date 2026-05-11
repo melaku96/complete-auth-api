@@ -2,6 +2,7 @@ import { forgotPasswordService } from "../services/forgot.password.service.js";
 import { loginService } from "../services/login.service.js";
 import { registerService } from "../services/register.service.js";
 import { resendVerificationService } from "../services/resend.verification.service.js";
+import { resetPasswordService } from "../services/reset.password.service.js";
 import { verificationService } from "../services/verification.service.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
@@ -69,3 +70,15 @@ export const forgotPasswordController = catchAsync(async(req, res)=>{
         resetURL
     });
 });
+//RESET PASSWORD CONTROLLER
+export const resetPasswordController = catchAsync(async(req,res)=>{
+    const {password} = req.body;
+    const {token} = req.params;
+
+    await resetPasswordService(password, token);
+
+    res.status(200).json({
+        success: true,
+        message: "Your password is reseted successfully",
+    });
+})
