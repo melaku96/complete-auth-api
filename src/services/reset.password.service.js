@@ -6,7 +6,7 @@ export const resetPasswordService = async(newPassword, token)=>{
   if(!newPassword){
     throw new ApiError("password is required", 400);
   };
-  if(!tokn){
+  if(!token){
     throw new ApiError("No token found", 403);
   };
   const hashedToken = cryptoHash(token);
