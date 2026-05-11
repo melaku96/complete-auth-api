@@ -86,7 +86,7 @@ export const resetPasswordController = catchAsync(async (req, res) => {
 })
 //REFRESH TOKEN
 export const refreshTokenController = catchAsync(async (req, res) => {
-    const token = req.cookies.token;
+    const token = req.cookies.refreshToken;
     const { newAccessToken, newRefreshToken } = await refreshTokenService(token);
     //set cookies
     res.cookie('accessToken', newAccessToken, {
