@@ -45,7 +45,7 @@ export const loginController = catchAsync(async (req, res) => {
         httpOnly: true,
         secure: false,
         sameSite: 'strict',
-        maxAge: 15 * 60 * 1000,
+        maxAge: 30 * 60 * 1000,
     });
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
