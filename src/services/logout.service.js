@@ -1,6 +1,6 @@
-import userModel from "../models/user.model";
-import ApiError from "../utils/ApiError"
-import { cryptoHash } from "../utils/hashToken";
+import userModel from "../models/user.model.js";
+import ApiError from "../utils/ApiError.js"
+import { cryptoHash } from "../utils/hashToken.js";
 
 export const logoutService = async(token)=>{
   if(!token){
