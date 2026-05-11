@@ -1,6 +1,7 @@
 import { forgotPasswordService } from "../services/forgot.password.service.js";
 import { loginService } from "../services/login.service.js";
 import { logoutService } from "../services/logout.service.js";
+import { uploadProfileService } from "../services/profile.upload.service.js";
 import { refreshTokenService } from "../services/refresh.token.service.js";
 import { registerService } from "../services/register.service.js";
 import { resendVerificationService } from "../services/resend.verification.service.js";
@@ -127,5 +128,18 @@ export const logoutController = catchAsync(async (req, res) => {
     res.status(200).json({
         success: true,
         message: 'Logged out successfully!',
+    });
+})
+// PROFILE UPLOAD
+export const profileUploadController = catchAsync(async(req, res)=>{
+    const id = req.user._id;
+    const reqFile = req.file;
+    const imgPath = req.file.path;
+
+    const {user} = await uploadProfileService(id, reqFile, imgPath);
+    res.status(200).json({
+        success: true,
+        message: 'Your profile updated successfully',
+        user
     });
 })
