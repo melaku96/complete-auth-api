@@ -1,4 +1,5 @@
 import { changePasswordService } from "../services/user.changepass.service.js";
+import { deleteUserService } from "../services/user.delete.service.js";
 import { getMeService } from "../services/user.get.service.js";
 import { updateUserService } from "../services/user.update.service.js";
 import { catchAsync } from "../utils/catchAsync.js";
@@ -33,5 +34,15 @@ export const changePasswordController = catchAsync(async(req, res)=>{
   res.status(200).json({
     success:true,
     message: "Your password changed successfully",
+  });
+});
+//delete user
+export const deleteUserController = catchAsync(async(req, res)=>{
+  const id = req.user._id;
+  await deleteUserService(id);
+
+  res.status(403).json({
+    success: true,
+    message: "The account deleted successfully!",
   });
 });
