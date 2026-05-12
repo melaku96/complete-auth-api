@@ -3,6 +3,7 @@ import { deleteUserService } from "../services/user.delete.service.js";
 import { getMeService } from "../services/user.get.service.js";
 import { updateUserService } from "../services/user.update.service.js";
 import { catchAsync } from "../utils/catchAsync.js";
+import { uploadProfileService } from "../services/profile.upload.service.js";
 
 //Get current user
 export const getCurrentUserController = catchAsync(async(req, res)=>{
@@ -46,3 +47,16 @@ export const deleteUserController = catchAsync(async(req, res)=>{
     message: "The account deleted successfully!",
   });
 });
+// PROFILE UPLOAD
+export const profileUploadController = catchAsync(async(req, res)=>{
+    const id = req.user._id;
+    const reqFile = req.file;
+    const imgPath = req.file.path;
+
+    const {user} = await uploadProfileService(id, reqFile, imgPath);
+    res.status(200).json({
+        success: true,
+        message: 'Your profile updated successfully',
+        user
+    });
+})
