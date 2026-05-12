@@ -1,8 +1,7 @@
 import express from "express";
 import { authLimiter } from "../middlewares/rateLimit.middleware.js";
-import { forgotPasswordController, loginController, logoutController, profileUploadController, refreshTokenController, registerController, resendVerificationController, resetPasswordController, verificationController } from "../controllers/auth.controller.js";
+import { forgotPasswordController, loginController, logoutController, refreshTokenController, registerController, resendVerificationController, resetPasswordController, verificationController } from "../controllers/auth.controller.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
-import upload from "../middlewares/upload.middleware.js";
 
 const router = express.Router();
 
@@ -15,6 +14,5 @@ router.post("/forgot-password", forgotPasswordController);
 router.patch("/reset-password/:token", resetPasswordController);
 router.post("/refresh-token", refreshTokenController);
 router.post("/logout", logoutController);
-router.post("/upload-profile", authMiddleware, upload.single('profile'), profileUploadController);
 
 export default router;
