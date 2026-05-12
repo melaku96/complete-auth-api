@@ -5,6 +5,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler.js";
 import authRoute from "./routes/auth.route.js";
+import userRoute from "./routes/user.route.js"
 import { apiLimiter } from "./middlewares/rateLimit.middleware.js";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 //Routes
 app.use("/api/auth", authRoute);
+app.use("/api/user", userRoute);
 //404 handling
 app.use((req, res)=>{
   res.status(404).json({
