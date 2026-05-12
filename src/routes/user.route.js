@@ -7,7 +7,7 @@ const router = express.Router();
 
 //routes
 router.get('/me', authMiddleware, getCurrentUserController);
-router.patch('/me', authMiddleware, updateUserController);
+router.patch('/update-user', authMiddleware, updateUserController);
 router.patch('/change-password', authMiddleware, changePasswordController);
 router.delete('/delete-user', authMiddleware, deleteUserController);
 router.patch("/upload-profile", authMiddleware, upload.single('profile'), profileUploadController);
